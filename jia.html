@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="gwc">
+	<button v-on:click="jia">+</button>
+	<p>单价:{{danjia}}</p>
+	<p>数量:{{shuliang}}</p>
+	<p>总价:{{zongjia}}</p>
+	<button @click="jie">-</button>
+</div>
+</body>
+<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	new Vue({
+		el:'#gwc',
+		data:{
+			danjia:10,
+			shuliang:0,
+			zongjia:0,
+		},
+		methods:{
+			jia: function(){
+				this.shuliang++;
+				this.zongjia=this.danjia*this.shuliang
+			},
+			jie: function(){
+				this.shuliang--;
+				if (this.shuliang<0) {
+					this.shuliang=0;
+				}
+				this.zongjia=this.danjia*this.shuliang
+			}
+
+		},
+
+		watch: {
+			'shuliang':function(newval,oldval){
+				if (this.shuliang>3) {
+						this.zongjia=this.zongjia-this.danjia
+				}
+			}
+		}
+	})
+
+
+
+
+</script>
+</html>
